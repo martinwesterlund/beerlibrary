@@ -6,6 +6,7 @@ import java.util.List;
 
 @RestController
 public class BeerController {
+
     private BeerRepository beerRepository;
 
     public BeerController(BeerRepository beerRepository){
@@ -14,28 +15,33 @@ public class BeerController {
 
     @GetMapping("/beers")
     public List<Beer> getAll(){
-        List<Beer> beers = this.beerRepository.findAll();
-        return beers;
+        return beerRepository.findAll();
     }
 
     @GetMapping("/beers/{id}")
-    public Beer getOne(String id){
-        return this.beerRepository.findById(id)
+    public Beer getOne(@PathVariable Long id){
+        return beerRepository.findById(id)
                 .orElseThrow( () -> new BeerException("No beer with id " + id));
     }
 
     @PutMapping("/beers/{id}")
-    public void insert(@RequestBody Beer beer){
-        this.beerRepository.insert(beer);
+    public Beer update(@RequestBody Beer beer, @PathVariable Long id){
+        return beerRepository.findById(id).map(storedBeer -> {
+            storedBeer.setBrand(beer.getBrand());
+            storedBeer.setRating(beer.getRating());
+            return beerRepository.save(storedBeer);
+        }).orElseThrow( () -> new BeerException("No beer with id " + id));
     }
 
     @PostMapping("/beers")
-    public void update(@RequestBody Beer beer){
-        this.beerRepository.save(beer);
+    public Beer create(@RequestBody Beer beer){
+
+        return beerRepository.save(beer);
     }
+
     @DeleteMapping("/beers/{id}")
-    public void delete(@PathVariable("id") String id){
-        this.beerRepository.deleteById(id);
+    public void delete(@PathVariable Long id){
+        beerRepository.deleteById(id);
     }
 
 }

@@ -16,20 +16,9 @@ public class DbSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception{
-        Beer heineken = new Beer(
-                "Heineken",
-                2
-        );
-        Beer falcon = new Beer(
-                "Falcon",
-                3
-        );
-        Beer poppels = new Beer(
-                "Poppels APA",
-                5
-        );
-
-        this.beerRepository.deleteAll();
+        Beer heineken = new Beer("Heineken",2);
+        Beer falcon = new Beer("Falcon",3);
+        Beer poppels = new Beer("Poppels APA",5);
 
         List<Beer> beers = Arrays.asList(heineken, falcon, poppels);
         this.beerRepository.saveAll(beers);
