@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class BeerController {
 
@@ -28,6 +29,7 @@ public class BeerController {
     public Beer update(@RequestBody Beer beer, @PathVariable Long id){
         return beerRepository.findById(id).map(storedBeer -> {
             storedBeer.setBrand(beer.getBrand());
+            storedBeer.setDescription(beer.getDescription());
             storedBeer.setRating(beer.getRating());
             return beerRepository.save(storedBeer);
         }).orElseThrow( () -> new BeerException("No beer with id " + id));

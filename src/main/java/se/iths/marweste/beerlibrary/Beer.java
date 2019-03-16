@@ -10,14 +10,24 @@ public class Beer {
 
     private @Id @GeneratedValue Long id;
     private String brand;
+    private String description;
     private int rating;
 
     public Beer() {
     }
 
-    public Beer(String brand, int rating) {
+    public Beer(String brand, String description, int rating) {
         this.brand = brand;
+        this.description = description;
         this.rating = rating;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getBrand() {
