@@ -63,6 +63,13 @@
         }
 
         function saveBeer() {
+            const toSend = {
+                brand: "Corona",
+                description: "Mexican beer with a taste of summer",
+                rating: 4
+            };
+
+            const jsonString = JSON.stringify(toSend);
             var xhr2 = new XMLHttpRequest;
         
             xhr2.open("POST", "http://localhost:8080/beers", true);
@@ -74,7 +81,7 @@
                 }
             }
 
-            xhr2.send("brand=corona&description=test&rating=3");
+            xhr2.send(jsonString);
 
 
         }
