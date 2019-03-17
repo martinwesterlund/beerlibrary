@@ -16,12 +16,12 @@ public class DbSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception{
-        Beer heineken = new Beer("Heineken", "Like water, but easy to drink for novice drinkers", 2);
-        Beer falcon = new Beer("Falcon", "Decent beer, but too much fusel oil",3);
-        Beer poppels = new Beer("Poppels APA", "Great taste, great beer!", 5);
-
-        List<Beer> beers = Arrays.asList(heineken, falcon, poppels);
-        this.beerRepository.saveAll(beers);
+//        Beer heineken = new Beer("Heineken", "Like water, but easy to drink for novice drinkers", 2);
+//        Beer falcon = new Beer("Falcon", "Decent beer, but too much fusel oil",3);
+//        Beer poppels = new Beer("Poppels APA", "Great taste, great beer!", 5);
+//
+//        List<Beer> beers = Arrays.asList(heineken, falcon, poppels);
+//        this.beerRepository.saveAll(beers);
 
 
     }
